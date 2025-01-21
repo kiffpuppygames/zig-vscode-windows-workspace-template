@@ -1,0 +1,71 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "zig",
+            "args": 
+            [
+                "build",
+                "-Doptimize=Debug",
+                "-freference-trace",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [ "$zig" ]
+        },
+        {
+            "label": "Build ReleaseFast",
+            "type": "shell",
+            "command": "zig",
+            "args": 
+            [
+                "build",
+                "-Doptimize=ReleaseFast",
+                "-freference-trace",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+            },
+            "problemMatcher": [ "$zig" ],
+            "dependsOn": [ "Run Tests" ]
+        },
+        {
+            "label": "Build Tests",
+            "type": "shell",
+            "command": "zig",
+            "args": [
+                "test", 
+                "-femit-bin=zig-out/bin/tests",
+                "--test-no-exec",
+                "${workspaceFolder}/src/tests.zig"
+            ]
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "zig",
+            "args": 
+            [
+                "build",
+                "test",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "test",
+            },
+            "problemMatcher": [ "$zig" ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+#In most cases projects don't include the .vscode folder as configs can differ between dev environments
+#.vscode
+
+.zig-cache
+zig-out
